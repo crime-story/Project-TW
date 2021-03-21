@@ -1,3 +1,5 @@
+/*-------------------------- MENIU-INTERACTIV ---------------------- */
+
 body {
     background-image: url("images/background.jpg");
     background-repeat: no-repeat;
@@ -10,7 +12,7 @@ body {
 
 .container {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
@@ -22,7 +24,7 @@ li {
 li a {
     text-decoration: none;
     display: inline-block;
-    color: #fff;
+    color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 28px;
     padding: 0 20px;
@@ -33,7 +35,7 @@ li a {
     display: block;
     width: 0;
     height: 2px;
-    background: #fff;
+    background:  white;
     transition: width .3s;
 }
 
@@ -42,17 +44,26 @@ li a {
     transition: width.3s;
 }
 
+/*-------------------------- MENIU-INTERACTIV ---------------------- */
+/*----------------------------- PANA AICI ---------------------------*/
+
 .title {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 70px;
+    font-family: 'DealersShaded';
+    font-size: 72px;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 .subtitle {
     text-align: center;
     font-family:'Dancing Script';
     font-size: 40px;
+    color: white;
 }
+
+/*RESPONSIVE TELEFON-TABLETA*/
 
 @media (max-width: 990px) {
     .menu {
@@ -68,7 +79,7 @@ li a {
 
 @media (max-width: 768px) {
     body {
-        background: black;
+        background: #000000;
     }
     .header {
         display: none;
@@ -79,24 +90,46 @@ li a {
     .nice {
         margin: 0;
     }
-
-
 }
+
+/*RESPONSIVE TELEFON-TABLETA*/
 
 footer {
-    position: fixed;
-    left: 0;
+    position: absolute;
     bottom: 0;
-    width: 100%;
-    background-color: red;
-    padding: 0.25% 2.5% 0.25% 2.5%;
-    border-radius: 50px;
-    color: white;
-    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+
 }
 
-.resize {
-    width: 5%;
-    height: auto;
+.iconita1 {
+    width: 70px;
+    height: 70px;
+}
 
+.continut-footer {
+    padding: 0;
+}
+
+.linkuri {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.linkuri ul {
+    display: flex;
+}
+
+.chestie {
+    list-style: none;
+}
+
+.sfarsit-footer {
+    text-align: center;
+    padding: 0;
+    color: white;
+    background-color: #000000;
+    opacity: 70%;
+    font-size: 20px;
 }
