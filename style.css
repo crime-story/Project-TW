@@ -53,7 +53,7 @@ li a {
 
 .title {
     text-align: center;
-    font-family: 'DealersShaded';
+    font-family: 'Dealers Solid';
     font-size: 4.5vw;
     color: white;
     -webkit-text-stroke-width: 2px;
@@ -72,12 +72,16 @@ li a {
     text-indent: 50px;
     font-size: 2vw;
     color: white;
+    -webkit-text-stroke-width: 0.05vw;
+    -webkit-text-stroke-color: black;
 }
 
 .test {
-    font-family: 'DealersShaded';
+    font-family:'Dancing Script';
     font-size: 4.5vw;
     color: white;
+    -webkit-text-stroke-width: 0.05vw;
+    -webkit-text-stroke-color: black;
 }
 
 
@@ -161,13 +165,14 @@ footer {
 }
 
 .sfarsit-footer {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
     padding: 0;
     color: white;
     background-color: #000000;
     border-radius: 25px;
     opacity: 70%;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .element {
