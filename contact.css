@@ -1,0 +1,21 @@
+.first {
+    color: white;
+}
+
+.paragraf {
+    text-indent: 50px;
+}
+
+.map {
+    margin-left: 25%;
+    width:30%;
+    height:30%;
+}
+
+.first>h1{
+    font-size:3.5vw;
+}
+
+.first>p{
+    font-size:2vw;
+}
