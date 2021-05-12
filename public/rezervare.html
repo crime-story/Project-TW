@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="rezervare.css">
     <link rel="icon" href="images/icon.png">
-    <script src="rezervare.js"></script>
+
 </head>
 <body>
 <header class="header">
@@ -36,11 +36,14 @@
                 <input id="data" type="date" name="data">
                 <label id="labelTelefon" for="telefon">Telefon:</label>
                 <input id="telefon" type="number" name="telefon">
-                <button type="button" onclick="myFunction()">Trimite Rezervarea!</button>
+                <button onclick="editDog()">Salveaza modificarile</button>
+                <button type="button" onclick="addDog()">Trimite Rezervarea!</button>
             </form>
+
             <div id="Text2">Rezervarile dumneavoastra in curs de procesare sunt:</div>
             <div id="Text"></div>
         </div>
+    <div id="content"></div>
 </main>
 <footer>
     <div class="continut-footer">
@@ -54,6 +57,7 @@
     <div class="sfarsit-footer">
         Copyright &copy; Popescu Paullo Robertto Karloss Grupa 1311.
     </div>
+    <script src="rezervare.js"></script>
 </footer>
 </body>
 </html>

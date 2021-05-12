@@ -1,0 +1,16 @@
+{
+  "Restaurant": [
+    {
+      "nume": "hello",
+      "data1": "0001-01-01",
+      "telefon": "1111",
+      "id": 1
+    },
+    {
+      "nume": "dsadsa",
+      "data1": "0001-01-23",
+      "telefon": "213",
+      "id": 2
+    }
+  ]
+}

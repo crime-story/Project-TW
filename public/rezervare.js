@@ -20,83 +20,120 @@ function myFunction() {
         // console.log(rezervare);
         var deleteButton = document.createElement("eliminaRezervare");
 
-
         div.appendChild(rezervare);
-
-        const temp = ` 
-                <tr id=' + x +'>
-                    <td>{.nume}</td>
-                    <td>{planta.plantat}</td>
-                    <td>{planta.cules}</td>
-                    <td>
-                        <button class="deleteButton">Delete</button>
-                    </td>
-                </tr>`
-
-
-
-
     }
-    // let div = document.getElementById("Text");
-    // div.appendChild(rezervari);
     return false;
-    // var text = "Input OK";
+}
+var currentDogId;
 
-    // //Get the value of input field with id="numb"
-    // x = document.getElementById("numb").value;
+function fetchDogs() {
+    let content = document.getElementById("content");
 
-    // // If x is Not a Number, or x is less than one, or x is grather than 10 then
-    // if (isNaN(x) || x < 1 || x > 10) {
-    //     text = "Not valid";
-    // }
-    // document.getElementById("demo").innerHTML = text;
+    let element = document.getElementsByClassName("element")[0];
+    let p = document.createElement("p");
+    p.innerText = "loading...";
+    p.setAttribute("id", "loading");
+    element.appendChild(p);
+
+    fetch('http://localhost:3000/Restaurant', {
+        method: 'get' // sunt 4 requesturi principale: GET, POST, PUT, DELETE
+    }).then(function(response) {
+        response.json().then((data) => {
+            if(data.length) {
+                element.removeChild(p);
+            }
+            // console.log(data[0].name);
+            for(let i = 0; i < data.length; i++){
+                let nume = document.createElement("p");
+                let data1 = document.createElement("p");
+                let telefon = document.createElement("p");
+                nume.innerText = data[i].nume;
+                nume.className = "NumeClass";
+                data1.innerText = data[i].data1;
+                data1.className = "DataClass";
+                telefon.innerText = data[i].telefon;
+                telefon.className = "TelefonClass";
+
+                content.appendChild(nume);
+                content.appendChild(data1);
+                content.appendChild(telefon);
+
+                let editButton = document.createElement("button");
+                let editText = document.createTextNode("Modifica");
+                editButton.className = "Edit";
+                editButton.appendChild(editText);
+                editButton.onclick = function() {
+                    document.getElementById("nume").value = data[i].nume;
+                    document.getElementById("data").value = data[i].data1;
+                    document.getElementById("telefon").value = data[i].telefon;
+                    currentDogId = data[i].id;
+                }
+                content.appendChild(editButton);
+
+                let deleteButton = document.createElement("button");
+                let deleteText = document.createTextNode("Sterge");
+                deleteButton.className = "Delete";
+                deleteButton.appendChild(deleteText);
+                deleteButton.onclick = function() {
+                    deleteDog(data[i].id);
+                }
+                content.appendChild(deleteButton);
+            }
+        })
+    })
 }
 
-container.innerHTML = `<table id="tabelPlante">
-        <tr>
-            <th>Nume</th>
-            <th>Plantare</th>
-            <th>Culegere</th>
-            <th>creion.jpg</th>
-        </tr>
-    </table>`;
+fetchDogs()
 
+function addDog() {
+    var x = document.getElementById("nume").value;
+    var y = document.getElementById("data").value;
+    var z = document.getElementById("telefon").value;
+    var newDog = {
+        nume: x,
+        data1: y,
+        telefon: z
+    }
+    fetch('http://localhost:3000/Restaurant', {
+        method: 'post', // semnalam faptul ca vrem sa introducem ceva nou in baza de date
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newDog)
+    }).then(function(response) {
+        // console.log(response);
+        window.location.reload();
+    })
+}
 
+function editDog() {
+    var x = document.getElementById("nume").value;
+    var y = document.getElementById("data").value;
+    var z = document.getElementById("telefon").value;
+    var newDog = {
+        nume: x,
+        data1: y,
+        telefon: z
+    }
 
-listaPlante.forEach(planta => {
-    const temp = ` 
-                <tr id=' + x +'>
-                    <td>${planta.nume}</td>
-                    <td>${planta.plantat}</td>
-                    <td>${planta.cules}</td>
-                    <td>
-                        <button class="deleteButton">Delete</button>
-                    </td>
-                </tr>`
+    fetch('http://localhost:3000/Restaurant/' + currentDogId, { //ca sa schimbam datele unui caine, trebuie sa il identificam prin id. Acesta se afla in currentDogId. La final url-ul va fi http://localhost:3000/dogs/1
+        method: 'put', // semnalam faptul ca vrem sa actualizam ceva deja existent in baza de date
+        headers: {
+            'Content-Type': 'application/json' //semnalam faptul ca lucram cu fisiere de tip json
+        },
+        body: JSON.stringify(newDog) // in body vom pune noul obiect (newDog). Acest body va ajunge in baza de date. Pentru a putea fi pus in BD trebuie sa fie sub forma de string, de aceea folosim JSON.stringify
+    }).then(function(response) {
+        window.location.reload();
+    })
+}
 
-    container.insertAdjacentHTML('beforeend', temp);
-});
-
-// function PozaUrmatoare() {
-//     if (PozeIndex < poze.length - 1) {
-//         PozeIndex += 1;
-//     }
-//     else
-//         PozeIndex = 0;
-//     PozeContainer.removeChild(img);
-//     img.src = poze[PozeIndex];
-//     PozeContainer.appendChild(img);
-// }
-
-// window.addEventListener("keydown", function (e) {
-//     if (e.key == "ArrowLeft")
-//     {
-//         PozaAnterioara();
-//     }
-//     else if(e.key == "ArrowRight")
-//     {
-//         PozaUrmatoare();
-//     }
-// })
-
-
+function deleteDog(id) {
+    fetch('http://localhost:3000/Restaurant/' + id, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function(response) {
+        window.location.reload();
+    })
+}

@@ -20,3 +20,36 @@
 #center {
     text-align: center;
 }
+
+.NumeClass {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.DataClass {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.TelefonClass {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
