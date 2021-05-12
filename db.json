@@ -1,16 +1,22 @@
 {
   "Restaurant": [
     {
-      "nume": "hello",
-      "data1": "0001-01-01",
-      "telefon": "1111",
+      "nume": "Gigel",
+      "data1": "2021-05-14",
+      "telefon": "0770692182",
       "id": 1
     },
     {
-      "nume": "dsadsa",
-      "data1": "0001-01-23",
-      "telefon": "213",
+      "nume": "Florin Salam",
+      "data1": "2021-05-15",
+      "telefon": "0747666999",
       "id": 2
+    },
+    {
+      "nume": "Costel Biju",
+      "data1": "2021-05-20",
+      "telefon": "0770666969",
+      "id": 3
     }
   ]
 }
