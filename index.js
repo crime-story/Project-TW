@@ -1,8 +1,10 @@
 // Import packages
-const express = require("express");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const express = require("express"); // importez frameworkuri
+const morgan = require("morgan"); // optional probabil pt loguri
+const bodyParser = require("body-parser"); // parseaza body il face sa fie json
+// daca il scot nu as mai putea face body parser
+const cors = require("cors"); // daca lasam gol il putea accesa oricine
+//
 const uuid = require("uuid");
 
 const fs = require("fs");
@@ -28,7 +30,8 @@ app.post("/restaurant", (req, res) => {
     rezervari.push(newRezervare);
     writeJSONFile(rezervari);
     // trimit raspuns catre frontend ca totul a fost in regula
-    res.status(200).send(newRezervare);
+    res.status(200).send(newRezervare); // trimitem noua rezervare care sa aiba setat atributul de id
+    // status 200 inseamna success
 });
 
 
@@ -45,9 +48,9 @@ function getRezervareById (id) {
 
 // Read One
 app.get("/restaurant/:id", (req, res) => {
-    let id = req.params.id;
+    let id = req.params.id; // luam id-ul pe care il cautam pentru rezervare
     let rezervare = getRezervareById(id)
-    if(rezervare === null) {
+    if(rezervare === null) { // se uita pe tipul de date ===
         res.status(404).send("Nu exista rezervarea!");
     } else {
         res.status(200).send(rezervare);
@@ -91,55 +94,59 @@ function updateRezervare (id, rezervare) {
 
 // Update
 app.put("/restaurant/:id", (req, res) => {
-    let id = req.params.id;
-    let exista = false;
+    let id = req.params.id; // id-ul rezervarii pe care vreau sa o actualizez
+    let exista = false; // daca exista rezervarea
     let update = req.body;
     const rezervari = readJSONFile();
-    for(let i = 0; i < rezervari.length; i++) {
-        if(rezervari[i].id === id) {
+    for(let i = 0; i < rezervari.length; i++) { // iteram prin toate rezervarile si o cautam dupa id
+        if(rezervari[i].id === id) { // am gasit rezervarea pe care vrem sa o actualizam
+            // ca sa actualizam cate un camp, nu toate folosim if la fiecare informatie a rezervarii
             if(update.nume) {
-                rezervari[i].nume = update.nume;
+                rezervari[i].nume = update.nume; // actualizam numele persoanei
             }
 
             if(update.data1) {
-                rezervari[i].data1 = update.data1;
+                rezervari[i].data1 = update.data1; // actualizam data rezervarii persoanei
             }
 
             if(update.telefon) {
-                rezervari[i].telefon =  update.telefon;
+                rezervari[i].telefon =  update.telefon; // actualizam telefonul persoanei
             }
             exista = true;
-            break;
+            break; // opresc iteratiile pentru ca am gasit rezervarea
         }
     }
 
-    if(exista === true) {
+    if(exista === true) { // daca am gasit o rezervare si am actualizat-o
+        // suntem obligati sa rescriem fisierul db.json
         writeJSONFile(rezervari);
-        res.status(200).send("Updatat!");
+        res.status(200).send("Rezervarea s-a actualizat!");
     }
-    else {
+    else { // daca nu am gasit rezervarea
         res.status(404).send("Nu exista rezervarea!");
+        // conventia 404 este pentru Not Found!
     }
 });
 
 // Delete
 app.delete("/restaurant/:id", (req, res) => {
     const rezervari = readJSONFile();
-    let id = req.params.id;
-    let exista = false;
-    for(let i = 0; i < rezervari.length; i++) {
-        if(rezervari[i].id == id) {
+    let id = req.params.id; // id-ul rezervarii pe care vreau sa o stergem
+    let exista = false; // daca exista rezervarea
+    for(let i = 0; i < rezervari.length; i++) { // iteram prin toate rezervarile si o cautam dupa id
+        if(rezervari[i].id === id) {
             exista = true;
-            rezervari.splice(i, 1);
+            rezervari.splice(i, 1); // sterg rezervarea de pe pozitia i
+            // splice  sterge de la indexul i atatea elemente cate indica al doilea argument
             break;
         }
     }
 
     if(exista === true) {
         writeJSONFile(rezervari);
-        res.status(200).send("Restaurant sters!");
+        res.status(200).send("Rezervarea a fost stersa!");
     } else {
-        res.status(404).send("Nu exista!");
+        res.status(404).send("Nu exista rezervarea!");
     }
 });
 
