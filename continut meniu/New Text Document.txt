@@ -1,0 +1,18 @@
+<h1 id="precizari">Precizari legale</h1>
+        <div id="precizari_container" class="hide">
+            <p class="paragraf">Obiect De Activitate: Cafenea</p>
+            <p class="paragraf">Cod CAEN: 5629(Alte servicii de alimentatie n.c.a)</p>
+        </div>
+        <h1 id="program">Program de lucru</h1>
+        <div id="program_container" class="hide">
+            <p class="paragraf">Luni - Vineri: 08.00-23.00</p>
+            <p class="paragraf">Sambata - Duminica: 09.00-24.00</p>
+        </div>
+
+        <h1 id="adresa">Adresa de contact</h1>
+        <div id="adresa_container" class="hide">
+            <p class="paragraf">Bd. Dacia Nr. 34, Sector 1 , Bucureşti</p>
+            <p class="paragraf">Telefon: 0786.049.163/ 0721.604.996</p>
+            <p class="paragraf">Fax: 021.341.56.76</p>
+            <p class="paragraf">E-mail: yamascaffeandsweets@yahoo.com</p>
+        </div>
